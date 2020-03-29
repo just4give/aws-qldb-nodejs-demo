@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ledger History <span *ngIf="record">({{record.metadata.id}})</span></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list lines="full">
+    <ion-item class="ledger" *ngFor="let r of data" color="dark" padding>
+      <ion-label class="ion-text-wrap">
+        <ion-text  color="warning">
+          <h2 class="data">{{r.data|json}}</h2>
+        </ion-text>
+        <ion-text color="light">
+          
+          <p>
+            <span>Doc ID: {{r.metadata.id}} | Tnx ID: {{r.metadata.txId}} | </span>
+            <span>Block: {{r.blockAddress.strandId}} | Block# {{r.blockAddress.sequenceNo|json}}</span>
+          </p>
+        </ion-text>
+      </ion-label>
+
+      <ion-button color="success"  slot="end" (click)="verify(r)">
+        <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+        Verify
+      </ion-button>
+
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cryptographic Verification <span *ngIf="record">{{record.metadata.id}}</span> </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card >
+    <ion-item>
+      <ion-icon name="key" slot="start"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        
+        <ion-text *ngIf="digest" color="primary">
+          <p>
+            <span><strong>Digest: </strong>{{getDigestAsString(digest.Digest.data)}}</span>
+          </p>
+          <p>
+            <span><strong>Digest Tip: </strong>{{digest.DigestTipAddress.IonText|json}}</span>
+          </p>
+          
+        </ion-text>
+
+        
+
+      </ion-label>
+      <ion-button color="warning"  slot="end" (click)="getDigest()">Get Digest</ion-button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card >
+    <ion-item>
+      <ion-icon name="clipboard-outline" slot="start"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        
+        <ion-text *ngIf="record" color="primary">
+          <p>
+            <span><strong>Block Addreess: </strong>{{record.blockAddress|json}}</span>
+          </p>
+          
+        </ion-text>
+
+        
+
+      </ion-label>
+      <ion-button color="success" [disabled]="!digest" slot="end" (click)="getProof()">Get Proof</ion-button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card *ngIf="proof">
+    <ion-card-header color="success">
+      
+      <ion-card-title color="success"><ion-icon name="checkmark-circle-outline"></ion-icon>Hashes recalculated successfully</ion-card-title>
+    </ion-card-header>
+    <ion-item color="dark">
+      <ion-label class="ion-text-wrap">
+        
+        <ion-text  color="warning">
+          <h2>Revision</h2>
+          <p>
+            {{proof.Revision.IonText}}
+          </p>
+          
+        </ion-text>
+
+        
+        </ion-label>
+       </ion-item>
+
+       <ion-item color="dark">
+        <ion-label class="ion-text-wrap">
+          
+          <ion-text  color="warning">
+            <h2>Proof Hashes</h2>
+            <!-- <p>
+              {{getProofAsList()}}
+            </p> -->
+            <ul>
+              <li *ngFor="let m of getProofAsList()">{{m}}</li>
+            </ul>
+            
+          </ion-text>
+  
+          
+          </ion-label>
+         </ion-item>
+
+  </ion-card>
+
+</ion-content>

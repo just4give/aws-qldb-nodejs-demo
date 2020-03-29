@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      QLDB Update
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-item>
+      <ion-input [(ngModel)]="obj.dealId" placeholder="Deal ID"></ion-input>
+      
+    </ion-item>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="obj.status"  value="saved" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="saved">Saved</ion-select-option>
+        <ion-select-option value="scanned">Scanned</ion-select-option>
+        <ion-select-option value="in-review">In-Review</ion-select-option>
+        <ion-select-option value="reviewed">Reviewed</ion-select-option>
+        <ion-select-option value="sent-to-dmv">Sent-To-DMV</ion-select-option>
+        <ion-select-option value="dmv-rejected">DMV Rejected</ion-select-option>
+        <ion-select-option value="dmv-approved">DMV Approved</ion-select-option>
+      </ion-select>
+      
+    </ion-item>
+    
+    <ion-button expand="block" color="success" [disabled]="!obj.dealId"  (click)="updateStatus()">Update</ion-button>
+  </ion-card>
+</ion-content>
