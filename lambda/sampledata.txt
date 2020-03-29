@@ -1,0 +1,17 @@
+++++ Create Deal table +++++ 
+create table Deal;
+
+++++ Load data into DealStatus table ++++
+insert into Deal 
+<<
+ {'dealId':'108568','vin':'5FNYF48539B007130','status':'saved'},
+ {'dealId':'108569','vin':'4S3BMBC62C3013571','status':'saved'},
+ {'dealId':'108570','vin':'1B3EL46JX5N656528','status':'saved'}
+>>
+
+++++ Select from Deal ++++++ 
+select * from Deal;
+
+
+++++ Select history for a given deal ++++
+select * from history(Deal) as h where h.metadata.id='';
